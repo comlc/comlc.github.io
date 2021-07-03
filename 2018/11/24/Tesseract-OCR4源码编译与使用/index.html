@@ -1,0 +1,146 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Tesseract-OCR4源码编译与使用"><meta name="keywords" content="Tesseract,OCR"><meta name="author" content="comlc,undefined"><meta name="copyright" content="comlc"><title>Tesseract-OCR4源码编译与使用 | COMLCのBlog</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.3"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?66f25c24596db799ce091d9b434b9495";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  localSearch: {"labels":{"input_placeholder":"Search for Posts","hits_empty":"我们没有找到任何搜索结果: ${query}"},"path":"search.xml"}
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码下载"><span class="toc-number">2.</span> <span class="toc-text">源码下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMake-VS2017编译"><span class="toc-number">3.</span> <span class="toc-text">CMake+VS2017编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux编译"><span class="toc-number">4.</span> <span class="toc-text">Linux编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-编码问题"><span class="toc-number">5.</span> <span class="toc-text">C++编码问题</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">comlc</div><div class="author-info__description text-center">九山八海，为一世界，聚千界则成小千世界，此界乘三，无我不断者</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives/"><span class="pull-left">文章</span><span class="pull-right">13</span></a><a class="author-info-articles__tags article-meta" href="/tags/"><span class="pull-left">标签</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories/"><span class="pull-left">分类</span><span class="pull-right">12</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" href="https://github.com/comlc" target="_blank">Comlc</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/background/bg-1.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">COMLCのBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">主页</a><a class="site-page" href="/archives/">归档</a><a class="site-page" href="/categories/">分类</a><a class="site-page" href="/tags/">标签</a><a class="site-page" href="/about/">关于我</a></span></div><div id="post-info"><div id="post-title">Tesseract-OCR4源码编译与使用</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-24</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/其他/">其他</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/其他/开发环境/">开发环境</a><span class="post-meta__separator">|</span><i class="fa fa-comment-o post-meta__icon" aria-hidden="true"></i><a href="/2018/11/24/Tesseract-OCR4源码编译与使用/#disqus_thread"><span class="disqus-comment-count" data-disqus-identifier="2018/11/24/Tesseract-OCR4源码编译与使用/"></span></a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">2,082</span><span class="post-meta__separator">|</span><span>阅读时长: 7 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div id="post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>Tesseract是开源的OCR识别引擎，最初由惠普实验室支持，1996年被移植到Windows上，1998年进行了C++化。在2005年Tesseract由惠普公司宣布开源。2006年到现在，都由Google公司开发。目前，Tesseract可以识别超过100种语言，也可以用来训练其它的语言。新版本中增加了一个基于LSTM神经网络的新OCR引擎。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="源码下载"><a href="#源码下载" class="headerlink" title="源码下载"></a>源码下载</h2><ol>
+<li>下载<a href="https://github.com/DanBloomberg/leptonica/releases" target="_blank" rel="noopener">leptonica-1.78.0.tar.gz</a>源码</li>
+<li>下载<a href="https://github.com/tesseract-ocr/tesseract/releases" target="_blank" rel="noopener">opencv_contrib-4.0.1.zip</a>源码，Tesseract版本和Leptonica的最低版本要求：  </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Tesseract</th>
+<th style="text-align:center">Leptonica</th>
+<th style="text-align:center">Ubuntu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">4.00</td>
+<td style="text-align:center">1.74.2</td>
+<td style="text-align:center">Ubuntu 18.04</td>
+</tr>
+<tr>
+<td style="text-align:center">3.05</td>
+<td style="text-align:center">1.74.0</td>
+<td style="text-align:center">必须从源码构建</td>
+</tr>
+<tr>
+<td style="text-align:center">3.04</td>
+<td style="text-align:center">1.71</td>
+<td style="text-align:center">Ubuntu 16.04</td>
+</tr>
+<tr>
+<td style="text-align:center">3.03</td>
+<td style="text-align:center">1.70</td>
+<td style="text-align:center">Ubuntu 14.04</td>
+</tr>
+<tr>
+<td style="text-align:center">3.02</td>
+<td style="text-align:center">1.69</td>
+<td style="text-align:center">Ubuntu 12.04</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>在<code>D:\BeawanDevelop\VSworkspace\tesseract-ocr</code>下创建<code>install</code>、<code>build-win</code>、<code>build-linux</code>。</li>
+</ol>
+<h2 id="CMake-VS2017编译"><a href="#CMake-VS2017编译" class="headerlink" title="CMake+VS2017编译"></a>CMake+VS2017编译</h2><blockquote>
+<p>CPPAN(C ++ Archive Network)是建立在CMake之上具有构建系统功能的跨平台C / C ++依赖管理器。 它支持快速的脚本式编码和原型制作以及处理大型项目。 可以很方便的查找、共享和重用库以及发布您的项目。你只需要将时间花在代码上，而不需要管理依赖关系。 CPPAN帮您将包装时间降低至几秒钟！它支持简单的交叉编译，继承并且把你自己的设置、标志推送到每个依赖。CPPAN之于C++就像Maven之于Java。CPPAN可以理解为C++的包管理器，包含了众多依赖包，只需要向CPPAN指定依赖包，CPPAN就会帮你下载好需要的依赖包和相关配置。</p>
+</blockquote>
+<ol>
+<li>下载<a href="https://cppan.org/client/" target="_blank" rel="noopener">cppan-master-Windows-client.zip</a>，解压到相应目录，并配置环境变量Path如<code>D:\ProgramFiles\cppan</code>。</li>
+<li>将Tesseract的源码解压到<code>build-win</code>目录下。打开<code>CMD</code>切换至源码目录，执行<code>cppan</code>下载依赖包，等待时间可能有些长，如下图：<br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/cppan.png" alt="cppan下载依赖包"></li>
+<li>待下载完后，在Tesseract源码目录下新建<code>build</code>并切换至该目录。执行<code>cmake ../ -G &quot;Visual Studio 15 2017 Win64&quot; -DSTATIC=1</code>生成VS2017项目。</li>
+<li>以管理员身份打开VS2017，并打开刚刚生成的项目，依次点击<code>生成-&gt;生成解决方案</code>。这里会报错，基本是因为编码问题，将报错的文件编码改成<code>UTF-8带签名</code>即可，如下图：<br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/error.png" alt="报错"></li>
+<li>生成完后右击<code>CMake Targets-&gt;INSTALL</code>生成(如果不以管理员身份打开，这里会因为权限问题报错<code>&lt;Exec Command=&quot;%(PostBuildEvent.Command)$(_BuildSuffix)&quot; Condition=&quot;&#39;%(PostBuildEvent.Command)&#39; != &#39;&#39;&quot;/&gt;</code>)，生成完会在<code>C:\Program Files</code>下看到<code>tesseract</code>安装目录，可以看到里面包含了头文件和静态库文件。</li>
+<li>若自己项目中运行库是多线程(/MTd或/MT)，则Tesseract库也需要是多线程(/MTd或/MT)的，需单独将子项目<code>libtesseract</code>设置成多线程(/MTd或/MT)，并右击单独编译生成<code>tesseract40.lib</code>库。</li>
+<li>关于Leptonica头文件可以从源码中提取或在<code>C:\Users\comlc\.cppan\storage\src</code>目录下找。编译的依赖库文件都在<code>C:\Users\comlc\.cppan\storage\lib</code>目录下。</li>
+<li>VS2017新建Windows控制台应用程序项目，配置头文件的附加包含目录、静态库的附加库目录、附加依赖项，进行测试。若报错<code>无法解析外部符号closesocket</code>如<a href="https://github.com/Microsoft/vcpkg/issues/2435" target="_blank" rel="noopener">https://github.com/Microsoft/vcpkg/issues/2435</a>，需引入<code>ws2_32.lib</code>库，若报错<code>无法解析的外部符号 __imp__fopen</code>等，需引入<code>msvcrtd.lib</code>库</li>
+<li>也可以直接用CPPAN进行编译<a href="https://github.com/cppan/cppan/issues/19" target="_blank" rel="noopener">https://github.com/cppan/cppan/issues/19</a>，更多编译方法可见<a href="https://github.com/tesseract-ocr/tesseract/wiki/Compiling" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tesseract/wiki/Compiling</a></li>
+</ol>
+<h2 id="Linux编译"><a href="#Linux编译" class="headerlink" title="Linux编译"></a>Linux编译</h2><blockquote>
+<p>Tesseract在linux下编译需要用到autotools工具集(包含autoscan、autoconf、automake等)来生成makefile文件，然后在进行编译安装。</p>
+</blockquote>
+<ol>
+<li>将Leptonica和Tesseract的源码都解压到<code>build-linux</code>目录下。</li>
+<li>这里我使用的是Win10子系统Ubuntu，先安装依赖库，执行<code>sudo apt-get install autoconf automake libtool pkg-config libpng-dev libjpeg8-dev libtiff5-dev zlib1g-dev</code>。<br>如果需要安装训练工具还需安装<code>apt-get install libicu-dev libpango1.0-dev libcairo2-dev</code>。</li>
+<li>首先安装Leptonica库，可以选择通过<code>apt-get install libleptonica-dev</code>安装发行版本，我这里选择用源码编译。</li>
+<li>进入leptonica源码目录，执行<code>./autogen.sh</code>生成configure，然后执行<code>./configure  --enable-shared=no --enable-static=yes</code>，如下图：<br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/leptonica-autogen.png" alt="Leptonica编译一"><br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/leptonica-configure.png" alt="Leptonica编译二"></li>
+<li>依次执行<code>make</code>和<code>make install</code>进行编译和安装，安装完后可在<code>/usr/local/include</code>目录下看到leptonica库的头文件，<code>/usr/local/lib</code>目录下有<code>liblept.a</code>静态库文件，如下图：<br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/leptonica-make.png" alt="Leptonica编译三"><br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/leptonica-install.png" alt="Leptonica编译四"></li>
+<li>接下来编译tesseract库，切换至tesseract源码目录，执行<code>./autogen.sh</code>生成configure，然后执行<code>./configure  --enable-shared=no --enable-static=yes</code>，在<a href="https://github.com/tesseract-ocr/tesseract/issues/961" target="_blank" rel="noopener">github issues</a>里有人讨论禁用OpenMP是否可以改善性能，若想禁用需加上<code>--disable-openmp</code>，可以看到tesseract能找到刚刚编译的leptonica库，如下图：<br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/OpenMP-Support.png" alt="OpenMP支持"><br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/check-leptonica.png" alt="Leptonica模块检查"><br><img src="/2018/11/24/Tesseract-OCR4源码编译与使用/../../../../img/tesseract/tesseract-configure.png" alt="Tesseract编译"></li>
+<li>依次执行<code>make -j4</code>和<code>make install</code>进行编译和安装，由于我的机器是4核8线程，所以这里使用<code>-j4</code>来加快编译速度。安装完后可在<code>/usr/local/include</code>目录下看到tesseract库的头文件，<code>/usr/local/lib</code>目录下有<code>libtesseract.a</code>静态库文件。</li>
+<li>执行<code>tesseract --version</code>可以查看版本信息。</li>
+<li>用VS2017创建CMake项目进行测试，测试代码可参考<a href="https://github.com/tesseract-ocr/tesseract/wiki/APIExample" target="_blank" rel="noopener">API Examples</a>，配置<code>CMakeLists.txt</code>时，链接库Tesseract和Leptonica的顺序要注意，CMake中链接库的顺序是A依赖B，那么B放在A的后面。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find_package (PkgConfig REQUIRED)</span><br><span class="line">pkg_search_module (LEPTONICA REQUIRED lept)</span><br><span class="line">pkg_search_module (TESSERACT REQUIRED tesseract)</span><br><span class="line">target_link_libraries (OCRTest $&#123;TESSERACT_LIBRARIES&#125; $&#123;LEPTONICA_LIBRARIES&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="C-编码问题"><a href="#C-编码问题" class="headerlink" title="C++编码问题"></a>C++编码问题</h2><blockquote>
+<p>在测试Tesseract-OCR的时候，由于VS的源文件编码不是UTF-8的，所以在输出<code>GetUTF8Text</code>和设置<code>tessedit_char_whitelist</code>的时候出现乱码，因此查阅了关于编码相关知识。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>Windows</th>
+<th>Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>源代码文件字符集</td>
+<td>可通过高级保存选项设置</td>
+<td>默认UTF-8</td>
+</tr>
+<tr>
+<td>编译器读取源代码时的字符集</td>
+<td>源文件有没有BOM，若有则认为你的源码字符集与源文件一致，若没有则认为你的源码字符集是Locale的</td>
+<td>与源文件一致</td>
+</tr>
+<tr>
+<td>编译器在编译时的字符集</td>
+<td>MSVC编译器默认的编码是根据系统Locale来决定的，可在CMD中输入<code>chcp</code>命令，若活动代码页为936，对应的编码为GBK</td>
+<td>默认UTF-8</td>
+</tr>
+<tr>
+<td>运行可执行程序的控制台窗口所使用的字符集</td>
+<td>默认根据系统Locale决定</td>
+<td>默认根据系统Locale决定</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>我理解的字符集就是将抽象字符和字节相互转化的一系列规则，转码即是将抽象字符以A字符集规则转换成A字符集的字节流，再将A字符集的字节流转换成B字符集的字节流，最后将B字符集的字节流以B字符集规则解析成抽象字符。</li>
+<li>源代码文件字符集决定了抽象字符(指人能识别的文字)保存到硬盘中是什么样的字节，例如C1字符集则按该字符集规则映射并存储为C1字符集的字节。</li>
+<li>编译器在编译前读取源文件时，将源文件中的抽象字符视为C2字符集，若C1和C2不同，则需要由C1字符集的字节流转换为C2字符集的字节流。</li>
+<li>编译器在编译时会将根据编译器程序内码C3，将C2转成C3保存在目标文件中，gcc程序内码默认为程序内码都是UTF-8，但似乎并不会对源文件中的字符编码进行转换，而是直接把字符串原样存放到目标文件中。</li>
+<li>在执行目标文件时，C++标准库会识别运行环境的编码C4，并根据C4编码，将存储在目标文件的的字节解析成抽象字符。</li>
+<li>在VS环境中，只要编译器正确识别源文件字符编码，则生成的目标文件默认都为GBK的，无法正确识别如源文件编码为UTF-8无BOM，则编译器会视为Locale默认的GBK编码，最终会出现乱码。</li>
+<li>在gcc环境中，编译器编译的目标文件编码会与源文件一致。默认情况下，若源文件为GB2312，则目标文件的字符存储为GB2312，而Linux终端编码默认UTF-8，通过解析最终输出打印会出现乱码。</li>
+<li>字符不管是作为输出打印到终端，还是作为输入传进第三方库，都以目标文件中字符的编码为准。</li>
+</ol>
+<hr>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">comlc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://comlc.github.io/2018/11/24/Tesseract-OCR4源码编译与使用/">https://comlc.github.io/2018/11/24/Tesseract-OCR4源码编译与使用/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://comlc.github.io" target="_blank">COMLCのBlog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tesseract/">Tesseract</a><a class="post-meta__tags" href="/tags/OCR/">OCR</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/20/Docker使用/"><i class="fa fa-chevron-left">  </i><span>Docker使用</span></a></div><div class="next-post pull-right"><a href="/2018/11/23/OpenCV4源码编译与使用/"><span>OpenCV4源码编译与使用</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="disqus_thread"></div><script>var unused = null;
+var disqus_config = function () {
+  this.page.url = 'https://comlc.github.io/2018/11/24/Tesseract-OCR4源码编译与使用/';
+  this.page.identifier = '2018/11/24/Tesseract-OCR4源码编译与使用/';
+  this.page.title = 'Tesseract-OCR4源码编译与使用';
+}
+var d = document, s = d.createElement('script');
+s.src = "https://" + 'fridolph' +".disqus.com/embed.js";
+s.setAttribute('data-timestamp', '' + +new Date());
+(d.head || d.body).appendChild(s);</script><script id="dsq-count-src" src="https://fridolph.disqus.com/count.js" async></script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2021 By comlc</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.5.3"></script><script src="/js/fancybox.js?version=1.5.3"></script><script src="/js/sidebar.js?version=1.5.3"></script><script src="/js/copy.js?version=1.5.3"></script><script src="/js/fireworks.js?version=1.5.3"></script><script src="/js/transition.js?version=1.5.3"></script><script src="/js/scroll.js?version=1.5.3"></script><script src="/js/head.js?version=1.5.3"></script></body></html>
