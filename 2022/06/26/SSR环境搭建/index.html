@@ -1,0 +1,88 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="SSR环境搭建"><meta name="keywords" content="SSR,BBR"><meta name="author" content="comlc,undefined"><meta name="copyright" content="comlc"><title>SSR环境搭建 | COMLCのBlog</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.3"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?66f25c24596db799ce091d9b434b9495";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  localSearch: {"labels":{"input_placeholder":"Search for Posts","hits_empty":"我们没有找到任何搜索结果: ${query}"},"path":"search.xml"}
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器环境"><span class="toc-number">2.</span> <span class="toc-text">服务器环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装SSR"><span class="toc-number">3.</span> <span class="toc-text">安装SSR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启BBR加速"><span class="toc-number">4.</span> <span class="toc-text">开启BBR加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启防火墙"><span class="toc-number">5.</span> <span class="toc-text">开启防火墙</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">comlc</div><div class="author-info__description text-center">九山八海，为一世界，聚千界则成小千世界，此界乘三，无我不断者</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives/"><span class="pull-left">文章</span><span class="pull-right">16</span></a><a class="author-info-articles__tags article-meta" href="/tags/"><span class="pull-left">标签</span><span class="pull-right">33</span></a><a class="author-info-articles__categories article-meta" href="/categories/"><span class="pull-left">分类</span><span class="pull-right">15</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" href="https://github.com/comlc" target="_blank">Comlc</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/background/bg-1.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">COMLCのBlog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">主页</a><a class="site-page" href="/archives/">归档</a><a class="site-page" href="/categories/">分类</a><a class="site-page" href="/tags/">标签</a><a class="site-page" href="/about/">关于我</a></span></div><div id="post-info"><div id="post-title">SSR环境搭建</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-26</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/其他/">其他</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/其他/SSR环境/">SSR环境</a><span class="post-meta__separator">|</span><i class="fa fa-comment-o post-meta__icon" aria-hidden="true"></i><a href="/2022/06/26/SSR环境搭建/#disqus_thread"><span class="disqus-comment-count" data-disqus-identifier="2022/06/26/SSR环境搭建/"></span></a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">790</span><span class="post-meta__separator">|</span><span>阅读时长: 4 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div id="post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>Shadowsocks-R服务节点</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="服务器环境"><a href="#服务器环境" class="headerlink" title="服务器环境"></a>服务器环境</h2><blockquote>
+<p>CentOS-7.9-x86_64</p>
+</blockquote>
+<h2 id="安装SSR"><a href="#安装SSR" class="headerlink" title="安装SSR"></a>安装SSR</h2><ol>
+<li><p>获取SS四合一脚本（四个分别是 SS-Python，SSR，SS-Go，SS-libev，我们选择的是SSR）</p>
+<p><code>wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</code></p>
+<p><code>chmod +x ./shadowsocks-all.sh</code></p>
+</li>
+<li><p>执行脚本<code>./shadowsocks-all.sh</code>，会提示<code>Which Shadowsocks server you&#39;d select</code>，选择<code>ShadowsocksR</code></p>
+</li>
+<li>下一步提示<code>Please enter password for SSR</code>，输入密码</li>
+<li>下一步提示<code>Please enter a port for SSR [1-65535]</code>，输入服务端口号</li>
+<li>下一步提示<code>Please select stream cipher for SSR</code>，选择加密方式<code>none</code>，下面的协议会自带加密</li>
+<li>下一步提示<code>Please select protocol for SSR</code>，选择协议<code>auth_chain_a</code></li>
+<li>最后提示<code>Please select obfs for SSR</code>，选择<code>tls1.2_ticket_auth</code></li>
+<li>等待安装完成即可，备注（以上加密协议亦可选择<code>aes-256-cfb</code>，<code>origin</code>，<code>plain</code>）</li>
+</ol>
+<h2 id="开启BBR加速"><a href="#开启BBR加速" class="headerlink" title="开启BBR加速"></a>开启BBR加速</h2><blockquote>
+<p>BBR是Google开发的TCP拥塞算法，BBR模块需要Linux4.9及以上的内核支持，CentOS7的发布版标配的是kernel-3.10，所以首先需要升级内核到大于等于4.9的版本</p>
+</blockquote>
+<ol>
+<li><p>查看当前系统内核版本：<code>uname -r</code></p>
+</li>
+<li><p>安装eprl的源：</p>
+<p><code>sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</code></p>
+<p>若执行报错，则先更新<code>yum update</code></p>
+<p><code>sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm</code></p>
+</li>
+<li><p>安装最新的内核版本：<code>sudo yum --enablerepo=elrepo-kernel install kernel-ml -y</code></p>
+</li>
+<li><p>查看系统现在所有的内核：<code>rpm -qa | grep kernel</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kernel-3.10.0-1160.76.1.el7.x86_64</span><br><span class="line">kernel-headers-3.10.0-1160.76.1.el7.x86_64</span><br><span class="line">kernel-ml-6.0.3-1.el7.elrepo.x86_64</span><br><span class="line">kernel-tools-3.10.0-1160.76.1.el7.x86_64</span><br><span class="line">kernel-tools-libs-3.10.0-1160.76.1.el7.x86_64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装的最新内核是<code>kernel-ml-6.0.3-1.el7.elrepo.x86_64</code>，需修改grub2的启动项</p>
+<p>查看默认启动内核：<code>grub2-editenv list</code></p>
+<p>查看所有内核：<code>cat /boot/grub2/grub.cfg | grep menuentry</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if [ x&quot;$&#123;feature_menuentry_id&#125;&quot; = xy ]; then</span><br><span class="line">  menuentry_id_option=&quot;--id&quot;</span><br><span class="line">  menuentry_id_option=&quot;&quot;</span><br><span class="line">export menuentry_id_option</span><br><span class="line">menuentry &apos;CentOS Linux (6.0.3-1.el7.elrepo.x86_64) 7 (Core)&apos; --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &apos;gnulinux-3.10.0-1160.42.2.el7.x86_64-advanced-9010c2ca-ea3f-4ab3-ae5f-feea271b946d&apos; &#123;</span><br><span class="line">menuentry &apos;CentOS Linux (3.10.0-1160.76.1.el7.x86_64) 7 (Core)&apos; --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &apos;gnulinux-3.10.0-1160.42.2.el7.x86_64-advanced-9010c2ca-ea3f-4ab3-ae5f-feea271b946d&apos; &#123;</span><br><span class="line">menuentry &apos;CentOS Linux (0-rescue-114054dc5a87478f99adbbed6027eea0) 7 (Core)&apos; --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &apos;gnulinux-0-rescue-114054dc5a87478f99adbbed6027eea0-advanced-9010c2ca-ea3f-4ab3-ae5f-feea271b946d&apos; &#123;</span><br></pre></td></tr></table></figure>
+<p>修改默认启动内核：<code>grub2-set-default &#39;CentOS Linux (6.0.3-1.el7.elrepo.x86_64) 7 (Core)&#39;</code></p>
+<p>重启服务器：<code>reboot</code></p>
+</li>
+<li><p>开启BBR加速：<code>sudo wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</code></p>
+<p>或执行以下命令直接开启：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;net.core.default_qdisc=fq&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">echo &quot;net.ipv4.tcp_congestion_control=bbr&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证BBR：执行<code>lsmod | grep bbr</code>或<code>sysctl -n net.ipv4.tcp_congestion_control</code>均有BBR字样即表示启动成功</p>
+</li>
+</ol>
+<h2 id="开启防火墙"><a href="#开启防火墙" class="headerlink" title="开启防火墙"></a>开启防火墙</h2><ol>
+<li><p>安装防火墙并启动：<code>yum install firewalld firewall-config</code></p>
+<p>启动：<code>systemctl start firewalld</code></p>
+<p>查看状态：<code>systemctl status firewalld</code></p>
+<p>设置开机自启动：<code>systemctl enable firewalld</code></p>
+</li>
+<li><p>开放SSR等部分端口：</p>
+<p>查看防火墙及开启的端口<code>firewall-cmd --list-all</code></p>
+<p>永久添加端口<code>firewall-cmd --zone=public --add-port=8080/tcp --permanent</code></p>
+<p>使配置生效<code>firewall-cmd --reload</code></p>
+</li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">comlc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://comlc.github.io/2022/06/26/SSR环境搭建/">https://comlc.github.io/2022/06/26/SSR环境搭建/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://comlc.github.io" target="_blank">COMLCのBlog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SSR/">SSR</a><a class="post-meta__tags" href="/tags/BBR/">BBR</a></div><nav id="pagination"><div class="next-post pull-right"><a href="/2022/06/20/Electron使用/"><span>Electron使用</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="disqus_thread"></div><script>var unused = null;
+var disqus_config = function () {
+  this.page.url = 'https://comlc.github.io/2022/06/26/SSR环境搭建/';
+  this.page.identifier = '2022/06/26/SSR环境搭建/';
+  this.page.title = 'SSR环境搭建';
+}
+var d = document, s = d.createElement('script');
+s.src = "https://" + 'fridolph' +".disqus.com/embed.js";
+s.setAttribute('data-timestamp', '' + +new Date());
+(d.head || d.body).appendChild(s);</script><script id="dsq-count-src" src="https://fridolph.disqus.com/count.js" async></script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2022 By comlc</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.5.3"></script><script src="/js/fancybox.js?version=1.5.3"></script><script src="/js/sidebar.js?version=1.5.3"></script><script src="/js/copy.js?version=1.5.3"></script><script src="/js/fireworks.js?version=1.5.3"></script><script src="/js/transition.js?version=1.5.3"></script><script src="/js/scroll.js?version=1.5.3"></script><script src="/js/head.js?version=1.5.3"></script></body></html>
